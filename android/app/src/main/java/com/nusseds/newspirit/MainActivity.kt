@@ -5,6 +5,8 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -36,25 +38,10 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(enableBluetooth, 0)
         }
 
-        val pairedDevices = bluetoothAdapter.bondedDevices
-
-        paired_devices.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            pairedDevices.map { bluetoothDevice -> bluetoothDevice.name })
-
-        val oppy: List<BluetoothDevice> =
-            pairedDevices.filter { bluetoothDevice -> bluetoothDevice.name.equals("oppy") }
-
-        var bluetoothDevice: BluetoothDevice? = null
-        if (oppy.size == 1) {
-            bluetoothDevice = oppy.get(0)
+        connect_button.setOnClickListener { v ->
+            println("Launching Connect Device activity")
+            val intent = Intent(this, ConnectDevice::class.java)
+            startActivity(intent)
         }
-
-        val socket: BluetoothSocket? = bluetoothDevice?.createRfcommSocketToServiceRecord(uuid)
-
-        val s = bluetoothDevice?.name ?: "hello"
-        println("bluetooth device")
-        println(s)
     }
 }
