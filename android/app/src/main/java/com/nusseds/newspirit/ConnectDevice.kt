@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_connect_device.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class ConnectDevice : AppCompatActivity() {
 
@@ -27,13 +29,10 @@ class ConnectDevice : AppCompatActivity() {
                 pairedDevices.map { bluetoothDevice -> bluetoothDevice.name })
 
         paired_devices.onItemClickListener = AdapterView.OnItemClickListener {
-            parent, view, position, id ->
-            Toast.makeText(this, "Clicked item: " + position, Toast.LENGTH_SHORT).show()
-            val device: BluetoothDevice = pairedDevices.get(position)
-            val intent = Intent()
-                .putExtra("btDevice", device)
-            setResult(RESULT_OK, intent)
-            finish()
+            _, _, position, _ ->
+            val device: BluetoothDevice = pairedDevices[position]
+            toast("Connecting to " + device.name)
+            startActivity<ControlActivity>("deviceAddress" to device.address)
         }
     }
 }
