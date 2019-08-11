@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">New Spirit</string>
+    <string name="connection_status">Connection Status</string>
+    <string name="angle">Angle</string>
+    <string name="strength">Strength</string>
 </resources>

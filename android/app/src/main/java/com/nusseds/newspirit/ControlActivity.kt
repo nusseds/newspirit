@@ -9,8 +9,10 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.control_layout.*
 import java.io.IOException
 import java.util.*
+
 
 class ControlActivity : AppCompatActivity() {
     companion object {
@@ -19,6 +21,8 @@ class ControlActivity : AppCompatActivity() {
         lateinit var progress: ProgressDialog
         lateinit var deviceAddress: String
         var isConnected: Boolean = false
+        var roverAngle: Int = 0
+        var roverStrength: Int = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,17 @@ class ControlActivity : AppCompatActivity() {
         deviceAddress = intent.getStringExtra("deviceAddress")
 
         ConnectToDevice(this).execute()
+
+        values_isConnected.apply {
+            text = if (isConnected) "Connected" else "Disconnected"
+        }
+
+        joystick.setOnMoveListener({ angle, strength ->
+            roverAngle = angle
+            roverStrength = strength
+            values_angle.text = roverAngle.toString()
+            values_strength.text = roverStrength.toString()
+        }, 17)
     }
 
     private fun disconnect() {

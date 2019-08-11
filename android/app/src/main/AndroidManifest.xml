@@ -14,7 +14,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ConnectDevice">
         </activity>
-        <activity android:name=".ControlActivity">
+        <activity android:name=".ControlActivity" android:screenOrientation="landscape">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
