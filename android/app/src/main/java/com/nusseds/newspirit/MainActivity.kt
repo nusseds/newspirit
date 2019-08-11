@@ -1,27 +1,19 @@
 package com.nusseds.newspirit
 
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
     var bluetoothAdapter: BluetoothAdapter? = null
 
-    val REQUEST_ENABLE_BLUETOOTH = 0
+    private val REQUEST_ENABLE_BLUETOOTH = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
