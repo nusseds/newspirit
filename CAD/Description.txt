@@ -1,0 +1,22 @@
+1. Fasteners Shafts and Bearings
+	Self Explanatory
+2. Rover Chassis
+	Contains the components and assemblies pertaining to the main chasis of the body
+	-	Main body
+	-	Bogie Suspension
+	-	Arm Mount
+	-	Mast Mount
+	-	Power Panel
+	-	Battery Holder
+
+3. Rocker Bogie Suspension
+	Contains the components and assemblies pertaining to the rocker bogie attached to the main chassis
+		
+4. Electrical
+	Electrical components of the rover
+		Raspi
+		Ardx
+		Servos
+		Batteries
+5. Differential Bar Assembly
+	Contains the components required for the differential bar system
