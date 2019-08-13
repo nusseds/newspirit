@@ -42,6 +42,44 @@ class ControlActivity : AppCompatActivity() {
             values_angle.text = roverAngle.toString()
             values_strength.text = roverStrength.toString()
         }, 17)
+
+        // Periodically send bluetooth messages
+        val timer = Timer()
+        val context = this
+
+        val task = object: TimerTask() {
+            override fun run() {
+                SendMessage(context).execute()
+            }
+        }
+
+        timer.schedule(task, 100, 100)
+
+        disconnect_button.setOnClickListener { _ ->
+            disconnect()
+        }
+    }
+
+    private class SendMessage(c: Context): AsyncTask<Void, Void, String>() {
+        private fun sendCommand(input: String) {
+            if (bluetoothSocket != null) {
+                if (!bluetoothSocket!!.isConnected) {
+                    bluetoothSocket!!.connect()
+                }
+                try {
+                    bluetoothSocket!!.outputStream.write(input.toByteArray())
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        override fun doInBackground(vararg p0: Void?): String? {
+            if (bluetoothSocket != null && bluetoothSocket!!.isConnected) {
+                sendCommand("$roverAngle , $roverStrength")
+            }
+            return null
+        }
     }
 
     private fun disconnect() {
@@ -54,19 +92,6 @@ class ControlActivity : AppCompatActivity() {
             }
         }
         finish()
-    }
-
-    private fun sendCommand(input: String) {
-        if (bluetoothSocket != null) {
-            if (!bluetoothSocket!!.isConnected) {
-                bluetoothSocket!!.connect()
-            }
-            try {
-                bluetoothSocket!!.outputStream.write(input.toByteArray())
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
     }
 
     private class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {

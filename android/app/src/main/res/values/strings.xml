@@ -3,4 +3,5 @@
     <string name="connection_status">Connection Status</string>
     <string name="angle">Angle</string>
     <string name="strength">Strength</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

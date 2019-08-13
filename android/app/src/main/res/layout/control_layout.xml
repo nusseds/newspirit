@@ -48,13 +48,18 @@
                   android:textColor="#000"
                   app:layout_constraintTop_toBottomOf="@id/values_angle_text"
                   app:layout_constraintLeft_toRightOf="@id/values_strength_text"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/values_strength_text" android:text="@string/disconnect"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/disconnect_button"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <io.github.controlwear.virtual.joystick.android.JoystickView
             xmlns:custom="http://schemas.android.com/apk/res-auto"
             android:id="@+id/joystick"
-            android:layout_height="318dp"
-            android:layout_width="318dp"
+            android:layout_height="150dp"
+            android:layout_width="150dp"
             android:background="@drawable/joystick_circle"
             custom:JV_buttonImage="@drawable/ic_launcher_foreground"
             custom:layout_constraintLeft_toRightOf="@id/values_panel"
