@@ -7,9 +7,11 @@ import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.JsonReader
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.control_layout.*
+import org.json.JSONObject
 import java.io.IOException
 import java.util.*
 
@@ -61,6 +63,14 @@ class ControlActivity : AppCompatActivity() {
     }
 
     private class SendMessage(c: Context): AsyncTask<Void, Void, String>() {
+        private fun constructMessage() : String {
+            return JSONObject()
+                .put("rover_control", JSONObject()
+                    .put("angle", roverAngle)
+                    .put("strength", roverStrength))
+                .toString()
+        }
+
         private fun sendCommand(input: String) {
             if (bluetoothSocket != null) {
                 if (!bluetoothSocket!!.isConnected) {
@@ -76,7 +86,7 @@ class ControlActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg p0: Void?): String? {
             if (bluetoothSocket != null && bluetoothSocket!!.isConnected) {
-                sendCommand("$roverAngle , $roverStrength")
+                sendCommand(constructMessage())
             }
             return null
         }
