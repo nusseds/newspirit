@@ -11,6 +11,7 @@
  */
 
 #include <math.h>
+#include <ros.h>
 #include "Arduino.h"
 #include "joydrive.h"
 #include "lewansoul.h"
@@ -25,8 +26,8 @@
 #define INPLACE_BUTTON 2 // Button to trigger turn-in-place mode.
 
 // Initialize joystick module
-JoyDrive jd(STEERING_PIN, VELOCITY_PIN);
-
+JoyDrive jd;
+ros::NodeHandle nh; 
 #ifdef LEWANSOUL
 LewanSoul lss(false);
 #endif
@@ -42,10 +43,6 @@ typedef struct RoverWheel
   int steerServoId; // Serial bus ID of servo responsible for wheel steering
   float steerTrim; // Adjustment in angle degrees to trim steering center position
 } RoverWheel;
-
-// Array for the offset of the rover steering wheels
-
-
 
 // Array of wheels on rover
 const RoverWheel Chassis[] = {
@@ -101,7 +98,7 @@ const RoverWheel Chassis[] = {
     28,     // roll ID
     true,   // roll inverted
     26,     // steer ID
-    19.1       // steer trim
+    -19.1       // steer trim
   }
 };
 
@@ -210,7 +207,9 @@ void setup()
   // Configure button pins
   pinMode(INPLACE_BUTTON, INPUT);
   digitalWrite(INPLACE_BUTTON, HIGH); // Button pulls LOW when pressed
-
+  nh.initNode();
+  jd.init(nh);
+  
 #ifdef LEWANSOUL
   // LewanSoul serial servo code is taking over Serial port.
   lss.setup();
@@ -443,5 +442,5 @@ void loop()
   }
   Serial.println();
 #endif
-
+  nh.spinOnce();
 }
