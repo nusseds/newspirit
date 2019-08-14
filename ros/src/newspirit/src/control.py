@@ -34,7 +34,7 @@ def get_rover_control(angle, strength):
 
 
 def talker():
-    pub = rospy.Publisher("/msg/roverControl/", SteerDrive, queue_size=10)
+    pub = rospy.Publisher("/newspirit/cmd/steerDrive", SteerDrive, queue_size=10)
     rospy.init_node('rpi_control', anonymous=True)
     rate=rospy.Rate(10)
     rospy.loginfo("Waiting for connection on RFCOMM channel %d" % port)
