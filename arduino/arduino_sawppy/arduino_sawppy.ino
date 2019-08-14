@@ -53,7 +53,7 @@ const RoverWheel Chassis[] = {
     25,     // roll ID
     false,  // roll inverted
     23,     // steer ID
-    -4      // steer trim
+    16.1      // steer trim
   },
   // front right
   {
@@ -62,7 +62,7 @@ const RoverWheel Chassis[] = {
     27,     // roll ID
     true,   // roll inverted
     29,     // steer ID
-    -4      // steer trim
+    -21.4      // steer trim
   },
   // mid left
   {
@@ -89,7 +89,7 @@ const RoverWheel Chassis[] = {
     20,     // roll ID
     false,  // roll inverted
     24,     // steer ID
-    2       // steer trim
+    -3       // steer trim
   },
   // rear right
   {
@@ -98,7 +98,7 @@ const RoverWheel Chassis[] = {
     28,     // roll ID
     true,   // roll inverted
     26,     // steer ID
-    4       // steer trim
+    -19.1       // steer trim
   }
 };
 
@@ -443,5 +443,4 @@ void loop()
   Serial.println();
 #endif
   nh.spinOnce();
-  //dros::spin();
 }
