@@ -27,7 +27,7 @@
 
 // Initialize joystick module
 JoyDrive jd;
-
+ros::NodeHandle nh; 
 #ifdef LEWANSOUL
 LewanSoul lss(false);
 #endif
@@ -207,7 +207,9 @@ void setup()
   // Configure button pins
   pinMode(INPLACE_BUTTON, INPUT);
   digitalWrite(INPLACE_BUTTON, HIGH); // Button pulls LOW when pressed
-
+  nh.initNode();
+  jd.init(nh);
+  
 #ifdef LEWANSOUL
   // LewanSoul serial servo code is taking over Serial port.
   lss.setup();
@@ -440,5 +442,6 @@ void loop()
   }
   Serial.println();
 #endif
-  ros::spin();
+  nh.spinOnce();
+  //dros::spin();
 }

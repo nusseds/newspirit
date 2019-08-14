@@ -20,10 +20,10 @@
 */
 
 JoyDrive::JoyDrive()
-{
-  SteerDrive=nh.subscribe("newspirit/cmd/steerDrive", 30,&JoyDrive::messageCb,this);
-//  nh.initNode();
-}
+: DriveSteer("newspirit/cmd/steerDrive",&JoyDrive::messageCb,this)
+  
+{ }
+
 int JoyDrive::getSteering()
 {
   // analogRead returns between 0 and 1023
@@ -116,8 +116,12 @@ int JoyDrive::constrained(int normalized, int previous, int maxDelta)
   return constrained;
 }
 
-void JoyDrive::messageCb(const NewSpirit::NewSpirit_SteerDrive& msg)
+void JoyDrive::messageCb(const newspirit::SteerDrive& msg)
 {
   steeringRaw=msg.steer;
   velocityRaw=msg.drive;
+}
+void JoyDrive::init(ros::NodeHandle& nh)
+{
+  nh.subscribe(DriveSteer);
 }

@@ -14,7 +14,7 @@
 
 #include "Arduino.h"
 #include <ros.h>
-#include <NewSpirit/NewSpirit_SteerDrive.h>
+#include <newspirit/SteerDrive.h>
 
 #define STEER_MID 500
 #define VEL_MID 520
@@ -26,23 +26,23 @@
 
 #define MAX_DELTA_STEERING 10
 #define MAX_DELTA_VELOCITY 15
-//using namespace ros;
+//using namespace ros
+//char topic[] ="newspirit/cmd/steerDrive";
 
 class JoyDrive
 {
   public:
     JoyDrive();
-    ros::NodeHandle nh;  
-    ros::Subscriber<NewSpirit::NewSpirit_SteerDrive> SteerDrive; 
+    void init(ros::NodeHandle &nh);
     int getSteering();
     int getVelocity();
 
   private:
     int normalized(int raw, int midpoint, bool invert);
     int constrained(int normalized, int previous, int maxDelta);
-    void messageCb(const NewSpirit::NewSpirit_SteerDrive& msg);
+    void messageCb(const newspirit::SteerDrive& msg);
 
-
+    ros::Subscriber<newspirit::SteerDrive,JoyDrive> DriveSteer;
     
     int _steeringPin;
     int _velocityPin;
