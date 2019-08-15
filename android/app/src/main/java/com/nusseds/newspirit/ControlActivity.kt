@@ -17,6 +17,8 @@ import java.util.*
 
 
 class ControlActivity : AppCompatActivity() {
+    val FREQUENCY = 1 // How many messages per second
+
     companion object {
         val uuid: UUID = UUID.fromString("94f39d29-7d6d-437d-973b-fba39e49d4ee") //Standard SerialPortService ID
         var bluetoothSocket: BluetoothSocket? = null
@@ -55,7 +57,7 @@ class ControlActivity : AppCompatActivity() {
             }
         }
 
-        timer.schedule(task, 100, 100)
+        timer.schedule(task, Math.round(1000.0 / FREQUENCY), Math.round(1000.0 / FREQUENCY))
 
         disconnect_button.setOnClickListener { _ ->
             disconnect()
