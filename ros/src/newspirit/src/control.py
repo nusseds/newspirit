@@ -53,6 +53,11 @@ def talker():
 
             pub.publish(SteerDrive(x, y))
             rospy.loginfo((x,y))
+
+        except ValueError:
+            # This happens when the bluetooth messages get duplicated
+            # Here we ignore them and discard the data
+            pass
         except IOError:
             pass
 
