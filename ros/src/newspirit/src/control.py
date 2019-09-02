@@ -27,8 +27,9 @@ def get_rover_control(angle, strength):
 
     steering and velocity is between 0 and 1023.
     """
-    steer = round(strength * math.sin(angle) / 100 * 511 + 511)
-    drive = round(strength * math.cos(angle) / 100 * 511 + 511)
+    angle = angle * math.pi / 180
+    steer = round(strength * math.cos(angle) / 100 * 511 + 511)
+    drive = round(strength * math.sin(angle) / 100 * 511 + 511)
 
     return (steer, drive)
 
