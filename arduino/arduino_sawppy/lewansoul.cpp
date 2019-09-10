@@ -364,12 +364,12 @@ void LewanSoul::moveTo(int servoId, float destination)
 
   // Output to LewanSoul API is from 0 to 1000, with 500 as center.
   // Interpreted as movement from -120 to 120 degrees.
-  LobotSerialServoMove(Serial, servoId, (destination * (500.0/120.0))+500, 200);
+  LobotSerialServoMove(Serial2, servoId, (destination * (500.0/120.0))+500, 200);
 }
 
 void LewanSoul::spinAt(int servoId, float velocity)
 {
   // Input should be from -100 to 100, so multiply by 10 to get
   // the -1000 to 1000 range desired by LewanSoul API
-  LobotSerialServoSetMode(Serial, servoId, 1, velocity * 10);
+  LobotSerialServoSetMode(Serial2, servoId, 1, velocity * 10);
 }
