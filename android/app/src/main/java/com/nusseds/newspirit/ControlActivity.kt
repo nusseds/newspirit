@@ -11,6 +11,10 @@ import android.util.JsonReader
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.control_layout.*
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
+import okio.ByteString
 import org.json.JSONObject
 import java.io.IOException
 import java.util.*
@@ -18,8 +22,12 @@ import java.util.*
 
 class ControlActivity : AppCompatActivity() {
     val FREQUENCY = 1 // How many messages per second
+    val RPI_IP = "192.168.10.1" // static RPI IP
+
+
 
     companion object {
+        private val NORMAL_CLOSURE_STATUS = 1000
         val uuid: UUID = UUID.fromString("94f39d29-7d6d-437d-973b-fba39e49d4ee") //Standard SerialPortService ID
         var bluetoothSocket: BluetoothSocket? = null
         lateinit var progress: ProgressDialog
