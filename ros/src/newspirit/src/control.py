@@ -37,8 +37,7 @@ def sub_callback(data):
 if __name__ == "__main__":
     try:
         rospy.init_node('rpi_control', anonymous=True)
-        rate=rospy.Rate(10)
         sub = rospy.Subscriber("/newspirit/remote", String, sub_callback)
-        rate.sleep()
+        rospy.spin()
     except rospy.ROSInterruptException:
         pass
