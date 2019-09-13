@@ -4,4 +4,18 @@
     <string name="angle">Angle</string>
     <string name="strength">Strength</string>
     <string name="disconnect">Disconnect</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="ros_header">ROS Settings</string>
+
+    <!-- ROS Preferences -->
+    <string name="websocket_ip">Websocket IP</string>
+    <string name="websocket_port">Websocket Port</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="ros_default_ip">10.42.0.1</string>
+    <string name="ros_default_port">9090</string>
+    <string name="ros_topic">ROS topic</string>
+    <string name="ros_default_topic">/newspirit/cmd/steerDrive</string>
 </resources>
