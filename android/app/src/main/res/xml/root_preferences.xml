@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/ros_header">
+        <EditTextPreference
+                app:key="ros_topic"
+                app:title="@string/ros_topic"
+                app:defaultValue="@string/ros_default_topic"
+                app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+                app:key="websocket_ip"
+                app:title="@string/websocket_ip"
+                app:defaultValue="@string/ros_default_ip"
+                app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+                app:key="websocket_port"
+                app:title="@string/websocket_port"
+                app:defaultValue="@string/ros_default_port"
+                app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
